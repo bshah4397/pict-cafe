@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Pict Cafe | Profile</title>
+    <title>Pict Cafe | Upload</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -107,12 +107,12 @@
               </a>
             </li>
 
-            <li>
+            <li class="active">
               <a href="upload.html">
-                <i class="fa fa-plus-square-o"></i> <span>Upload</span>
+                <i class="fa fa-plus-square-o "></i> <span>Upload</span>
               </a>
             </li>
-            <li class="active">
+            <li>
               <a href="profile.html">
                 <i class="fa fa-user"></i> <span>Profile</span>
               </a>
@@ -132,51 +132,92 @@
           </h1>
         </section>
 
+
+
+
+
+
+
+
+
+
+        <!--  -->
+
+
+
         <!-- Main content -->
         <section class="content">
-          <!-- Info boxes -->
           <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Joey's Pizza</big></span>
-                  <span class="info-box-number"><small>19 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Martin Garrix</big></span>
-                  <span class="info-box-number"><small>05 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
+            <!-- left column -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Di Bella</big></span>
-                  <span class="info-box-number"><small>19 APRIL 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Quesso</big></span>
-                  <span class="info-box-number"><small>19 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+
+
+
+
+            <div class="col-md-6">
+              <!-- general form elements disabled -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Event Description</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <form role="form">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Even Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                        <input type="text" class="form-control" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Event Description</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                        <input type="text" class="form-control" placeholder="One line desc...">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Event Date</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control" />
+                      </div><!-- /.input group -->
+                    </div><!-- /.form group -->
+
+                    <div class="form-group">
+                      <label>Members</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                        <input type="text" class="form-control" placeholder="One line desc...">
+                      </div>
+                    </div>
+
+
+
+
+                    <!-- Select multiple-->
+
+
+
+                  </form>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!--/.col (right) -->
+          </div>   <!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+
+
+
+
+        <!--  -->
+
 
 
 
