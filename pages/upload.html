@@ -21,6 +21,11 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <style>
+      .cardL{
+        height: 360px;
+      }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,20 +50,20 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Tasks: style can be found in dropdown.less -->
-              <li class="dropdown tasks-menu"><a><i class="fa fa-plus-square-o"></i></a></li>
+              <li class="dropdown tasks-menu"><a href="upload.html"><i class="fa fa-plus-square-o"></i></a></li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">Bhavya Shah</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce
-                      <small>60003168011</small>
+                      Bhavya Shah
+                      <small>bshah4397@gmail.com</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -83,7 +88,7 @@
               <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>Bhavya Shah</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Verified</a>
             </div>
@@ -114,7 +119,7 @@
             </li>
             <li>
               <a href="profile.html">
-                <i class="fa fa-user"></i> <span>Profile</span>
+                <i class="fa fa-user"></i> <span>Timeline</span>
               </a>
             </li>
           </ul>
@@ -127,8 +132,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Memory :
-            <small>DASHBOARD</small>
+            EVENT -
+            <small>UPLOAD</small>
           </h1>
         </section>
 
@@ -193,21 +198,57 @@
                       <label>Members</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <input type="text" class="form-control" placeholder="One line desc...">
+                        <input type="text" class="form-control" placeholder="Add Members">
+                      </div>
+                    </div>
+                  </form>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!--/.col (left) -->
+
+
+            <!-- RIGHT COL  -->
+
+            <div class="col-md-6">
+              <!-- general form elements disabled -->
+              <div class="box box-primary cardL">
+                <div class="box-header">
+                  <h3 class="box-title">Event Description</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <form role="form">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Even Location</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                        <input type="text" class="form-control" placeholder="Location">
                       </div>
                     </div>
 
+                    <div class="form-group">
+                      <label for="exampleInputFile">Image uploads</label>
+                      <input type="file" id="exampleInputFile" multiple>
+                      <p></p>
+                      <p class="help-block" style="padding-left:2px;">Attach all the images of the repsective events</p>
+                      <p class="help-block">&nbsp</p>
+                      <p class="help-block">&nbsp</p>
+                      <p class="help-block">&nbsp</p>
+                    </div>
 
-
-
-                    <!-- Select multiple-->
-
-
+                    <div class="">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
 
                   </form>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!--/.col (right) -->
+
+
+
+
+
           </div>   <!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Pict Cafe | Profile</title>
+    <title>Pict Cafe | Timeline</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -45,20 +45,20 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Tasks: style can be found in dropdown.less -->
-              <li class="dropdown tasks-menu"><a><i class="fa fa-plus-square-o"></i></a></li>
+              <li class="dropdown tasks-menu"><a href="upload.html"><i class="fa fa-plus-square-o"></i></a></li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">Bhavya Shah</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce
-                      <small>60003168011</small>
+                      Bhavya Shah
+                      <small>bshah4397@gmail.com</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -83,7 +83,7 @@
               <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>Bhavya Shah</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Verified</a>
             </div>
@@ -114,7 +114,7 @@
             </li>
             <li class="active">
               <a href="profile.html">
-                <i class="fa fa-user"></i> <span>Profile</span>
+                <i class="fa fa-user"></i> <span>Timeline</span>
               </a>
             </li>
           </ul>
@@ -127,66 +127,75 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Memory :
-            <small>DASHBOARD</small>
+            Bhavya Shah :
+            <small>bshah4397@gmail.com</small>
           </h1>
         </section>
 
+
+
+
+
+
+
         <!-- Main content -->
         <section class="content">
-          <!-- Info boxes -->
+
+          <!-- row -->
           <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Joey's Pizza</big></span>
-                  <span class="info-box-number"><small>19 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Martin Garrix</big></span>
-                  <span class="info-box-number"><small>05 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
+            <div class="col-md-12">
+              <!-- The time line -->
+              <ul class="timeline">
 
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Di Bella</big></span>
-                  <span class="info-box-number"><small>19 APRIL 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big>Quesso</big></span>
-                  <span class="info-box-number"><small>19 MARCH 2017</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
+                <!-- FOR LOOP BEGIN -->
+
+
+
+
+                <!-- timeline time label -->
+                <li class="time-label">
+                  <span class="bg-blue">
+                    3 Jan. 2014
+                  </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-camera bg-primary"></i>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                    <h3 class="timeline-header"><a href="#">Martin Garrix</a> - 50 Pictures</h3>
+                    <div class="timeline-body">
+                      <img src="http://placehold.it/150x100" alt="..." class='margin' />
+                      <img src="http://placehold.it/150x100" alt="..." class='margin'/>
+                      <img src="http://placehold.it/150x100" alt="..." class='margin'/>
+                      <img src="http://placehold.it/150x100" alt="..." class='margin'/>
+                    </div>
+                  </div>
+                </li>
+                <!-- END timeline item -->
+
+
+
+                <!-- FOR LOOP END -->
+
+
+
+
+                <li>
+                  <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+              </ul>
             </div><!-- /.col -->
           </div><!-- /.row -->
-
-
-
-
-
-
-
-
-
         </section><!-- /.content -->
+
+
+
+
+
+
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
