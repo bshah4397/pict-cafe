@@ -6,24 +6,69 @@
 	class Events extends Connection
 	{
 		
-		function viewEvents()
+		function addEvent($eventName,$eventDesc,$eventDate,$eventLocation,$eventCreator)
 		{
-			$sql = "SELECT * FROM events;";
-			$result = $this->conn->query($sql);
-		    if ($result->num_rows > 0)
-		     {
-		        // output data of each row
-		        while($row = $result->fetch_assoc())
-		        {
-		            echo $row["userId"];
-		        }
-		    }
-		    else
-		    {
-		        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		        die();
-		    }
-		}
-	}
+			$sql = "INSERT INTO event (event_name,event_location,event_date,event_description,event_creator) VALUES ('".$eventName."','".$eventLocation."','".$eventDate."','".$eventDesc."','".$eventCreator."');";
+			//echo $sql;
 
+			if (mysqli_query($this->conn, $sql)) 
+			{
+				return 'true';
+				
+			}
+			else 
+			{
+				
+				return'false';
+			}
+			$this->addEventMembers($eventCreator,$eventName);
+		}
+		function getId($eventName,$eventCreator)
+		{
+			$sql = "SELECT MAX(event_id) FROM event WHERE event_name LIKE '".$eventName."' AND event_creator LIKE '".$eventCreator."';";
+			//echo $sql;
+			$result = $this->conn->query($sql);
+			$row = $result->fetch_assoc();
+			return $row["MAX(event_id)"];
+		}
+		function getEvent($id)
+		{
+			$sql = "SELECT event_name,event_date FROM event WHERE event_id = ".$id.";";
+			//echo $sql;
+			$events = array();
+			$result = $this->conn->query($sql);
+			//$row = $result->fetch_assoc();
+			// print_r($row);
+			$row = $result->fetch_assoc();	
+				$events[0] = $row["event_name"];
+				$events[1] = $row["event_date"];
+		
+			return $events;
+		}
+		function getAllEvents($email)
+		{
+			$sql = "SELECT event_id,event_name,event_date FROM event WHERE event_creator LIKE '".$email."' ORDER BY event_date DESC;";
+			//echo $sql;
+			$events = array();
+			$k=0;
+			$result = $this->conn->query($sql);
+			//$row = $result->fetch_assoc();
+			// print_r($row);
+			while($row = $result->fetch_assoc()){
+				$events[$k][0] = $row["event_name"];
+				$events[$k][1] = $row["event_date"];
+				$events[$k][2] = $row["event_id"];
+				$k++;
+			}
+			//print_r($events);
+			return $events;
+		}
+		function getEventForGAllery($value='')
+		{
+			# code...
+		}
+
+
+	}
+	
 ?>

@@ -6,9 +6,31 @@
 	class Registration extends Connection
 	{
 		
-		function registerUser($user,$pass,$name,$email)
+		function updateUserDetails($email,$name,$profilePicture,$token,$tokenType)
 		{
-			$sql =  "INSERT INTO users VALUES ('".$user."','".$pass."','".$name."','".$email."');";
+			$sql =  "INSERT INTO user_details VALUES ('".$email."','".$name."','".$profilePicture."','".$token."','".$tokenType."');";
+			if (mysqli_query($this->conn, $sql)) 
+			{
+				return 'true';
+			}
+			else 
+			{
+				return'false';
+			}
+			$sql =  "INSERT INTO event_members VALUES ('".$email."','');";
+			if (mysqli_query($this->conn, $sql)) 
+			{
+				return 'true';
+			}
+			else 
+			{
+				return'false';
+			}
+		}
+
+		function updateUserCredentials($email,$password)
+		{
+			$sql =  "INSERT INTO user_cred VALUES ('".$email."','".$password."');";
 			if (mysqli_query($this->conn, $sql)) 
 			{
 				return 'true';

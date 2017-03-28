@@ -6,23 +6,28 @@
 	class Users extends Connection
 	{
 		
-		function viewUsers()
+		
+		function checkUser($email,$password)
 		{
-			$sql = "SELECT * FROM users;";
-	 		$result = $this->conn->query($sql);
-		    if ($result->num_rows > 0)
-		     {
-		        // output data of each row
-		        while($row = $result->fetch_assoc())
-		        {
-		            echo $row["UserId"];
-		        }
+			$sql = "SELECT * FROM user_cred WHERE email ='".$email."' AND password = '".$password."';";
+			$result = $this->conn->query($sql);
+			if ($result->num_rows > 0)
+			{
+				return "true"; 
 		    }
 		    else
 		    {
-		        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		        die();
+		    	return "false";
 		    }
+
+		}
+
+		function getName($email)
+		{
+			$sql = "SELECT name FROM user_details WHERE email ='".$email."';";
+			$result = $this->conn->query($sql);
+			$row = $result->fetch_assoc();
+			return $row["name"];
 		}
 	}
 
