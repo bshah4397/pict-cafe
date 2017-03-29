@@ -21,7 +21,6 @@
 				
 				return'false';
 			}
-			$this->addEventMembers($eventCreator,$eventName);
 		}
 		function getId($eventName,$eventCreator)
 		{
@@ -62,10 +61,6 @@
 			}
 			//print_r($events);
 			return $events;
-		}
-		function getEventForGAllery($value='')
-		{
-			# code...
 		}
 
 
