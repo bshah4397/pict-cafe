@@ -8,7 +8,7 @@
 			public $conn=null;
 	       	public $servername = "localhost";
 			public $username = "root";
-			public $password = "";
+			public $password = "root";
 			public $dbname = "pict-cafe";
 
 		//connection function
