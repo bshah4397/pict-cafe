@@ -1,4 +1,4 @@
-<?php 
+<?php
   @session_start();
   //echo $_SESSION["name"];
   if (!isset($_SESSION["email"])) {
@@ -34,7 +34,7 @@
         height: 360px;
       }
     </style>
-     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIKvH7BAJKyear-OmyQhmWSSRWF_NfuLM&v=3.exp&libraries=places"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -105,7 +105,7 @@
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <input required="true" type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -166,14 +166,14 @@
                       <label>Even Name</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
-                        <input type="text" class="form-control" placeholder="Name" name="eventName">
+                        <input required="true" type="text" class="form-control" placeholder="Name" name="eventName">
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Event Description</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                        <input type="text" class="form-control" placeholder="One line desc..." name="eventDesc">
+                        <input required="true" type="text" class="form-control" placeholder="One line desc..." name="eventDesc">
                       </div>
                     </div>
 
@@ -183,7 +183,7 @@
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="date" class="form-control" name="eventDate" />
+                    <input required="true" type="date" class="form-control" name="eventDate" />
                     </div><!-- /.input group -->
                     </div><!-- /.form group -->
 
@@ -222,7 +222,7 @@
 
                     <div class="form-group">
                       <label for="exampleInputFile">Image uploads</label>
-                     <input type="file" name="eventPhotos[]" multiple="" />
+                     <input required="true" type="file" name="eventPhotos[]" multiple="" />
                       <p></p>
                       <p class="help-block" style="padding-left:2px;">Attach all the images of the repsective events</p>
                       <p class="help-block">&nbsp</p>
@@ -280,13 +280,13 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
-     <script>                                                              
-            function init() {                                                 
-                var input = document.getElementById('locationTextField');     
+     <script>
+            function init() {
+                var input = document.getElementById('locationTextField');
                 var autocomplete = new google.maps.places.Autocomplete(input);
-            }                                                                 
-                                                                              
-            google.maps.event.addDomListener(window, 'load', init);           
-        </script> 
+            }
+
+            google.maps.event.addDomListener(window, 'load', init);
+  </script>
   </body>
 </html>

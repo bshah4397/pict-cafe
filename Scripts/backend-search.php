@@ -1,16 +1,16 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-$link = mysqli_connect("localhost", "root", "", "pict-cafe");
- 
+$link = mysqli_connect("localhost", "root", "root", "pict-cafe");
+
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
- 
+
 // Escape user inputs for security
 $query = mysqli_real_escape_string($link, $_REQUEST['query']);
- 
+
 if(isset($query)){
     // Attempt select query execution
     $sql = "SELECT * FROM event WHERE event_name LIKE '" . $query . "%'";
@@ -28,7 +28,7 @@ if(isset($query)){
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
 }
- 
+
 // close connection
 mysqli_close($link);
 ?>

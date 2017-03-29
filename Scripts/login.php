@@ -12,15 +12,17 @@
 	$result = $userObj->checkUser($email,$password);
 	//echo $result;
 	if ($result==="true") {
-		echo "success";
+		//echo "success";
 	}
 	else{
-		echo "fail";
+		//echo "fail";
 		die();
 	}
 
 	$name = $userObj->getName($email);
 	$_SESSION["name"] = $name;
 	$_SESSION["email"] = $email;
-	header("location:../pages/dash.php")
+	//echo "before";
+	header("location:../pages/dash.php");
+	//echo "after";
 ?>
