@@ -10,6 +10,9 @@
 	$eventLocation = $_POST["eventLocation"];
 	$eventPhotos = array();
 	$eventPhotos = $_FILES["eventPhotos"]["name"];
+	$temp = $_POST["eventMembers"];
+    $eventMembers = explode(',', $temp[0]);
+
 
 	{
 		// echo "<br>Name = $eventName";
@@ -30,6 +33,7 @@
 	// else{echo "fail";}
 
 	$eventId = $eventObj->getId($eventName,$eventCreator);
+	$result = $eventObj->addMemers($eventId,$eventMembers);
 	//echo $eventId;
 
 	if(mkdir('../assets/events/'.$eventId))

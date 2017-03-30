@@ -29,6 +29,19 @@
 			$row = $result->fetch_assoc();
 			return $row["name"];
 		}
+		function getAllEmail()
+		{
+			$sql = "SELECT email FROM user_details;";
+			$result = $this->conn->query($sql);
+			$k=0;
+			$email = array();
+			while($row = $result->fetch_assoc()){
+				$email[$k] = $row["email"];
+				$k++;
+			}
+			//print_r($email);
+			return $email;
+		}
 	}
 
 ?>

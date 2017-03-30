@@ -11,13 +11,13 @@
 			$sql =  "INSERT INTO user_details VALUES ('".$email."','".$name."','".$profilePicture."','".$token."','".$tokenType."');";
 			if (mysqli_query($this->conn, $sql)) 
 			{
-				return 'true';
+				//return 'true';
 			}
 			else 
 			{
 				return'false';
 			}
-			$sql =  "INSERT INTO event_members VALUES ('".$email."','');";
+			$sql =  "INSERT INTO event_members(email) VALUES ('".$email."');";
 			if (mysqli_query($this->conn, $sql)) 
 			{
 				return 'true';

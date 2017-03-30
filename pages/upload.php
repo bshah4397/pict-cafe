@@ -4,8 +4,16 @@
   if (!isset($_SESSION["email"])) {
     header("location:../index.html");
   }
-
-?>
+  include '../Scripts/classes/users.php';
+        $userObj = new Users();
+        $userObj->connect();
+        $emails = $userObj->getAllEmail();
+        $count = count($emails);
+        $i=0;
+       // echo $count;
+     
+            
+    ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -191,7 +199,15 @@
                     <label>Members</label>
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                    <input type="text" class="form-control" placeholder="Add Members" name="eventMembers">
+                    <input type="email" class="form-control" placeholder="Add Members" name="eventMembers[]" list="emails" multiple>
+                    <datalist id="emails">
+                      <?php
+                           while ($i<$count) {
+                              echo "<option value='".$emails[$i]."'>";
+                              $i++;
+                          }
+                      ?>
+                  </datalist>
                     </div>
                     </div>
                     <!--  </form> -->
@@ -281,11 +297,10 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
      <script>
-            function init() {
+                        function init() {
                 var input = document.getElementById('locationTextField');
                 var autocomplete = new google.maps.places.Autocomplete(input);
             }
-
             google.maps.event.addDomListener(window, 'load', init);
   </script>
   </body>

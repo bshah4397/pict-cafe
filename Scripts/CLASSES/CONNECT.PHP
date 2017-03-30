@@ -6,9 +6,9 @@
 	{
 
 			public $conn=null;
-	    public $servername = "localhost";
+	    	public $servername = "localhost";
 			public $username = "root";
-			public $password = "root";
+			public $password = "";
 			public $dbname = "pict-cafe";
 
 		//connection function

@@ -1,25 +1,16 @@
 <?php 
-   @session_start();
-   include '../Scripts/classes/events.php';
-  // include '../Scripts/classes/users.php';
-   //echo $_SESSION["name"];
-   if (!isset($_SESSION["email"]))
-   {
-      header("location:../index.html");
-   }
-
-   $eventObj = new Events();
-   $eventObj->connect();
-   $email = $_SESSION["email"];
-   $events = $eventObj->getMyEvents($email);
+  @session_start();
+  //echo $_SESSION["name"];
+  if (!isset($_SESSION["email"])) {
+    header("location:../index.html");
+  }
 
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Pict Cafe | Dashboard</title>
+    <title>Pict Cafe | Upload</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -38,6 +29,12 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <style>
+      .cardL{
+        height: 360px;
+      }
+    </style>
+     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,14 +42,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <style>
-    @media only screen and (min-width: 720px) {
-      .mar1{
-          margin-top: 7%;
-      }
-    }
-    </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
           $('.search-box input[type="text"]').on("keyup input", function(){
@@ -60,7 +50,7 @@
               var term = $(this).val();
               var resultDropdown = $(this).siblings(".result");
               if(term.length){
-                  $.get("../Scripts/backend-search.php", {query: term}).done(function(data){
+                  $.get("../Scripts/search-users.php", {query: term}).done(function(data){
                       // Display the returned data in browser
                       resultDropdown.html(data);
                   });
@@ -137,32 +127,27 @@
             </div>
           </div>
           <!-- search form -->
-          <form action="../Scripts/searchMediatorForEvents.php" method="get" class="sidebar-form">
-            
-            <div class="input-group search-box">
-
-              <input type="text" autocomplete="off" name="q" class="form-control" placeholder="Search..."/>
-              <div class="result"></div>
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
-              
             </div>
-            <!-- <div class="result"></div> -->
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="dash.php">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
 
-            <li>
+            <li class="active">
               <a href="upload.php">
-                <i class="fa fa-plus-square-o"></i> <span>Upload</span>
+                <i class="fa fa-plus-square-o "></i> <span>Upload</span>
               </a>
             </li>
             <li>
@@ -180,56 +165,107 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Memory - 
-            <small>DASHBOARD</small>
+            EVENT -
+            <small>UPLOAD</small>
           </h1>
         </section>
 
+        <!--  -->
+
         <!-- Main content -->
-        <section class="content">
+        <form role="form" action="../Scripts/eventAdd.php" method="Post" enctype="multipart/form-data">
+          <section class="content">
+            <div class="row">
+              <!-- left column -->
+              <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Event Description</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- <form role="form" action="../Scripts/eventAdd.php" method="Post"> -->
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Event Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                        <input type="text" class="form-control" placeholder="Name" name="eventName">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Event Description</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                        <input type="text" class="form-control" placeholder="One line desc..." name="eventDesc">
+                      </div>
+                    </div>
 
-          <!-- Info boxes -->
-          <div class="row mar1">
-            <?php 
-              $count = sizeof($events);
-              //echo "<br>rows = ".$count;
-              $i=0;
-              //echo "<br><br>";
-              while($i<$count AND $count<6)
-              {
-                // echo "<br>Name = ".$events[$i][0];
-                // echo "<br>Date = ".$events[$i][1];
-                 $link = "event.php?id=".$events[$i][2];
-              ?>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><big><a href='<?=$link?>'><?=$events[$i][0]?></a></big></span>
-                  <span class="info-box-number"><small><?=$events[$i][1]?></small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-           <?php
-               $i++;
-              }
-            ?>
+                    <div class="form-group">
+                    <label>Event Date</label>
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="date" class="form-control" name="eventDate" />
+                    </div><!-- /.input group -->
+                    </div><!-- /.form group -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
-
-           
-
-          </div><!-- /.row -->
+                    <div class="form-group">
+                    <label>Members</label>
+                    <div class="input-group search-box">
+                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <input type="text" class="form-control " placeholder="Add Members" name="eventMembers">
+                    <div class="result"></div>
+                    </div>
+                    </div>
+                    <!--  </form> -->
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div><!--/.col (left) -->
 
 
 
+              <!-- RIGHT COL  -->
 
+              <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="box box-primary cardL">
+                  <div class="box-header">
+                    <h3 class="box-title">Event Description</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- <form role="form"> -->
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Even Location</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                        <input type="text" id="locationTextField" class="form-control" placeholder="Location" name="eventLocation">
+                      </div>
+                    </div>
 
-          <!-- Info boxes -->
-         
+                    <div class="form-group">
+                      <label for="exampleInputFile">Image uploads</label>
+                     <input type="file" name="eventPhotos[]" multiple="" />
+                      <p></p>
+                      <p class="help-block" style="padding-left:2px;">Attach all the images of the repsective events</p>
+                      <p class="help-block">&nbsp</p>
+                      <p class="help-block">&nbsp</p>
+                      <p class="help-block">&nbsp</p>
+                    </div>
 
-        </section><!-- /.content -->
+                    <div class="">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                    <!-- </form> -->
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div><!--/.col (right) -->
+            </div>   <!-- /.row -->
+          </section><!-- /.content -->
+        </form>
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
@@ -269,5 +305,13 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
+     <script>                                                              
+            function init() {                                                 
+                var input = document.getElementById('locationTextField');     
+                var autocomplete = new google.maps.places.Autocomplete(input);
+            }                                                                 
+                                                                              
+            google.maps.event.addDomListener(window, 'load', init);           
+        </script> 
   </body>
 </html>
