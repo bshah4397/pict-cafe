@@ -1,12 +1,39 @@
 <?php
 	include 'classes/registeration.php';
-	$name = $_POST["name"];
-	$email = $_POST["email"];
-	$password = $_POST["password"];
-	$profilePicture = null;
-	$token = null;
-	$tokenType = null;
 
+	if (isset($_GET["t"])) {
+		if ($_GET["t"]==="G") {
+			$name = $_GET["name"];
+			$email = $_GET["email"];
+			$password = $_GET["ID"];
+			$token = $_GET["ID"];
+			$tokenType = $_GET["t"];
+			$profilePicture = $_GET["img"];
+		}
+		else if($_GET["t"]==="F"){
+			$email = $_GET["name"];
+			$email = strtolower($email);
+			$email = str_replace(" ", ".", $email);
+			$email .= "@facebook.com";
+			//echo $email;
+			$profilePicture = "../assets/avatar1.png";
+			$name = $_GET["name"];
+			$password = $_GET["ID"];
+			$token = $_GET["ID"];
+			$tokenType = $_GET["t"];
+		}	
+	}
+	else{
+
+		$name = $_POST["name"];
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+		$profilePicture = "../assets/avatar1.png";
+		$token = "self";
+		$tokenType = "self";
+	}
+	
+	
 	
 	$regObj = new Registration();
 	$regObj->connect();

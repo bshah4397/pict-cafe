@@ -2,10 +2,25 @@
 	//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	@session_start();
 	include 'classes/users.php';
+	if (isset($_GET["t"])) {
+		if ($_GET["t"]==="G") {
+			$email = $_GET["email"];
+			$password = $_GET["ID"];
 
-	$email = $_POST["login_email"];
-	$password = $_POST["login_password"];
-
+		}
+		else if($_GET["t"]==="F"){
+			$email = $_GET["name"];
+			$email = strtolower($email);
+			$email = str_replace(" ", ".", $email);
+			$email .= "@facebook.com";
+			$password = $_GET["ID"];
+		}	
+	}
+	else{
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+	}
+	
 	$userObj = new Users();
 	$userObj->connect();
 
@@ -22,6 +37,7 @@
 	$name = $userObj->getName($email);
 	$_SESSION["name"] = $name;
 	$_SESSION["email"] = $email;
+	$_SESSION["pic"] = $userObj->getImg($email);
 	//echo "before";
 	header("location:../pages/dash.php");
 	//echo "after";

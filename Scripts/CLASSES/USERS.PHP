@@ -21,7 +21,6 @@
 		    }
 
 		}
-
 		function getName($email)
 		{
 			$sql = "SELECT name FROM user_details WHERE email ='".$email."';";
@@ -29,9 +28,17 @@
 			$row = $result->fetch_assoc();
 			return $row["name"];
 		}
-		function getAllEmail()
+		function getImg($email)
 		{
-			$sql = "SELECT email FROM user_details;";
+			$sql = "SELECT profile_pict FROM user_details WHERE email ='".$email."';";
+			$result = $this->conn->query($sql);
+			$row = $result->fetch_assoc();
+			return $row["profile_pict"];
+		}
+		function getAllEmail($email)
+		{
+			$sql = "SELECT email FROM user_details WHERE email NOT IN ('".$email."');";
+			//echo $sql;
 			$result = $this->conn->query($sql);
 			$k=0;
 			$email = array();
@@ -41,6 +48,20 @@
 			}
 			//print_r($email);
 			return $email;
+		}
+		function getAllName($email)
+		{
+			$sql = "SELECT name FROM user_details WHERE email NOT IN ('".$email."');";
+			//echo $sql;
+			$result = $this->conn->query($sql);
+			$k=0;
+			$email = array();
+			while($row = $result->fetch_assoc()){
+				$email[$k] = $row["name"];
+				$k++;
+			}
+			print_r($email);
+			//return $email;
 		}
 	}
 

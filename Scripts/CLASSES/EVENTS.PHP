@@ -79,12 +79,12 @@
 				$k++;
 			}
 			//print_r($events);
-			$temp2 = array();
-			foreach ($events as $key => $t)
-			{
-			    $temp2[$key] = $t[2];
+			foreach ($events as $key => $row) {
+			    $date[$key] = $row[1];
 			}
-			array_multisort($temp2, SORT_ASC, $events);
+			if(count($events)!=0){array_multisort($date, SORT_DESC, $events);}
+			// echo "sorted<br>";
+			// print_r($events);
 			return $events;
 		}
 		function getMyEvents($email)
