@@ -1,4 +1,4 @@
-<?php 
+<?php
   //error_reporting(0);
   @session_start();
   include '../Scripts/classes/events.php';
@@ -40,6 +40,30 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('.search-box input[type="text"]').on("keyup input", function(){
+              /* Get input value on change */
+              var term = $(this).val();
+              var resultDropdown = $(this).siblings(".result");
+              if(term.length){
+                  $.get("../Scripts/backend-search.php", {query: term}).done(function(data){
+                      // Display the returned data in browser
+                      resultDropdown.html(data);
+                  });
+              } else{
+                  resultDropdown.empty();
+              }
+          });
+
+          // Set search input value on click of result item
+          $(document).on("click", ".result p", function(){
+              $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+              $(this).parent(".result").empty();
+          });
+      });
+    </script>
   </head>
   <body class="skin-blue">
     <div class="wrapper">
@@ -100,14 +124,18 @@
               <a href="#"><i class="fa fa-circle text-success"></i> Verified</a>
             </div>
           </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+          <form action="../Scripts/searchMediatorForEvents.php" method="get" class="sidebar-form">
+
+            <div class="input-group search-box">
+
+              <input type="text" autocomplete="off" name="q" class="form-control" placeholder="Search..."/>
+              <div class="result" style="background-color: white !important;"></div>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
+
             </div>
+            <!-- <div class="result"></div> -->
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -183,7 +211,7 @@
                 <li>
                   <i class="fa fa-camera bg-primary"></i>
                   <div class="timeline-item">
-                  <?php 
+                  <?php
                     $today = date("Y-m-d");
                     $old = $events[$i][1];
                     $diff = abs(strtotime($today) - strtotime($old));
@@ -194,7 +222,7 @@
                      $eventObj->connect();
                      $email = $_SESSION["email"];
                      $events = $eventObj->getAllEvents($email);
-                    
+
 
                        $dir = "../assets/events/".$events[$i][2];
                        $files = scandir($dir);
@@ -202,13 +230,13 @@
                         // Count number of files and store them to variable..
                         $num_files = count($files)-2;
                          $link = "event.php?id=".$events[$i][2];
-                        
+
                   ?>
                     <span class="time"><i class="fa fa-clock-o"></i><?php printf(" %d years, %d months, %d days ago", $years, $months, $days);?></span>
                     <h3 class="timeline-header"><a href='<?=$link?>'><?=$events[$i][0]?></a> - <?=$num_files?> Pictures</h3>
                     <div class="timeline-body">
                     <?php
-                       
+
                         //echo "count = ".$num_files."<br><br>";
                        // echo $dir;
                         // Open a directory, and read its contents
@@ -224,10 +252,10 @@
                       <?php
                       $count++;
                             }
-                           
+
                             closedir($dh);
                           }
-                          
+
                         }?>
                     </div>
                   </div>

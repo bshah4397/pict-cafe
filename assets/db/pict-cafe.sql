@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2017 at 05:42 PM
+-- Generation Time: Apr 19, 2017 at 06:56 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -35,15 +35,6 @@ CREATE TABLE `event` (
   `event_creator` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`event_id`, `event_name`, `event_location`, `event_date`, `event_description`, `event_creator`) VALUES
-(3, 'First Ever Event', 'Home', '2017-03-26', 'Lets hope this works', 'sneh.tools@gmail.com'),
-(4, 'test event 2', 'home', '2017-03-24', 'no description', 'sneh.tools@gmail.com'),
-(5, 'test event 3', 'Home', '2017-03-28', 'event 3', 'sneh.tools@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -52,19 +43,15 @@ INSERT INTO `event` (`event_id`, `event_name`, `event_location`, `event_date`, `
 
 CREATE TABLE `event_members` (
   `email` varchar(255) NOT NULL,
-  `event_id` int(11) NOT NULL
+  `event_id` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `event_pictures`
+-- Dumping data for table `event_members`
 --
 
-CREATE TABLE `event_pictures` (
-  `event_photos` text NOT NULL,
-  `event_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `event_members` (`email`, `event_id`) VALUES
+('sneh.gajiwala@facebook.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -76,14 +63,6 @@ CREATE TABLE `user_cred` (
   `email` varchar(255) NOT NULL,
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_cred`
---
-
-INSERT INTO `user_cred` (`email`, `password`) VALUES
-('bshah4397@gmail.com', 'bhavya'),
-('sneh.tools@gmail.com', 'password123');
 
 -- --------------------------------------------------------
 
@@ -98,14 +77,6 @@ CREATE TABLE `user_details` (
   `token` text NOT NULL,
   `token_type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_details`
---
-
-INSERT INTO `user_details` (`email`, `name`, `profile_pict`, `token`, `token_type`) VALUES
-('sneh.tools@gmail.com', 'Sneh Gajiwala', '', '', ''),
-('bshah4397@gmail.com', 'Bhavya Shah', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -143,7 +114,7 @@ ALTER TABLE `user_details`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

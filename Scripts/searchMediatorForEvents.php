@@ -6,7 +6,8 @@
 	$eventObj = new Events();
 	$eventObj->connect();
 	$eventId = $eventObj->getId($event_name,$email);
-	//echo $eventId;
+	echo $event_name;
+	echo $eventId;
 
 	$link = "../pages/event.php?id=".$eventId;
 

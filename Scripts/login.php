@@ -14,13 +14,13 @@
 			$email = str_replace(" ", ".", $email);
 			$email .= "@facebook.com";
 			$password = $_GET["ID"];
-		}	
+		}
 	}
 	else{
-		$email = $_POST["email"];
-		$password = $_POST["password"];
+		$email = $_POST["login_email"];
+		$password = $_POST["login_password"];
 	}
-	
+
 	$userObj = new Users();
 	$userObj->connect();
 
@@ -31,7 +31,10 @@
 	}
 	else{
 		//echo "fail";
+		echo "<script>alert('Your Login Details Are Invalid.');window.location.href='../index.html'</script>";
+		//header("location:../index.html");
 		die();
+
 	}
 
 	$name = $userObj->getName($email);

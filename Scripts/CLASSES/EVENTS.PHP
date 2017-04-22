@@ -5,20 +5,20 @@
 	*/
 	class Events extends Connection
 	{
-		
+
 		function addEvent($eventName,$eventDesc,$eventDate,$eventLocation,$eventCreator)
 		{
 			$sql = "INSERT INTO event (event_name,event_location,event_date,event_description,event_creator) VALUES ('".$eventName."','".$eventLocation."','".$eventDate."','".$eventDesc."','".$eventCreator."');";
 			//echo $sql;
 
-			if (mysqli_query($this->conn, $sql)) 
+			if (mysqli_query($this->conn, $sql))
 			{
 				return 'true';
-				
+
 			}
-			else 
+			else
 			{
-				
+
 				return'false';
 			}
 		}
@@ -28,6 +28,7 @@
 			//echo $sql;
 			$result = $this->conn->query($sql);
 			$row = $result->fetch_assoc();
+			//echo $row["MAX(event_id)"];
 			return $row["MAX(event_id)"];
 		}
 		function getEvent($id)
@@ -38,10 +39,10 @@
 			$result = $this->conn->query($sql);
 			//$row = $result->fetch_assoc();
 			// print_r($row);
-			$row = $result->fetch_assoc();	
+			$row = $result->fetch_assoc();
 				$events[0] = $row["event_name"];
 				$events[1] = $row["event_date"];
-		
+
 			return $events;
 		}
 		function getAllEvents($email)
@@ -118,20 +119,20 @@
 				$events = $row["event_id"];
 				$events = $events.",".$eventId;
 				$sql = "UPDATE event_members SET event_id ='".$events."' WHERE email LIKE '".$eventMembers[$i]."';";
-				if (mysqli_query($this->conn, $sql)) 
+				if (mysqli_query($this->conn, $sql))
 				{
 					//return 'true';
-					
+
 				}
-				else 
+				else
 				{
-					
+
 					//return'false';
 				}
 					$i++;
 			}
-			return;	
+			return;
 		}
 	}
-	
+
 ?>

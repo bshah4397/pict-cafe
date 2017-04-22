@@ -1,6 +1,7 @@
-<?php 
+<?php
    @session_start();
    include '../Scripts/classes/events.php';
+   include '../Scripts/classes/users.php';
   // include '../Scripts/classes/users.php';
    //echo $_SESSION["name"];
    if (!isset($_SESSION["email"]))
@@ -12,6 +13,10 @@
    $eventObj->connect();
    $email = $_SESSION["email"];
    $events = $eventObj->getMyEvents($email);
+
+  //  $imgObj = new Users();
+  //  $imgObj->connect();
+  //  $_SESSION["pic"] = $imgObj->getImg($email);
 
 ?>
 
@@ -68,7 +73,7 @@
                   resultDropdown.empty();
               }
           });
-          
+
           // Set search input value on click of result item
           $(document).on("click", ".result p", function(){
               $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
@@ -138,15 +143,15 @@
           </div>
           <!-- search form -->
           <form action="../Scripts/searchMediatorForEvents.php" method="get" class="sidebar-form">
-            
+
             <div class="input-group search-box">
 
               <input type="text" autocomplete="off" name="q" class="form-control" placeholder="Search..."/>
-              <div class="result"></div>
+              <div class="result" style="background-color: white !important;"></div>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
-              
+
             </div>
             <!-- <div class="result"></div> -->
           </form>
@@ -180,7 +185,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Memory - 
+            Memory -
             <small>DASHBOARD</small>
           </h1>
         </section>
@@ -190,7 +195,7 @@
 
           <!-- Info boxes -->
           <div class="row mar1">
-            <?php 
+            <?php
               $count = sizeof($events);
               //echo "<br>rows = ".$count;
               $i=0;
@@ -218,7 +223,7 @@
             <!-- fix for small devices only -->
             <div class="clearfix visible-sm-block"></div>
 
-           
+
 
           </div><!-- /.row -->
 
@@ -227,7 +232,7 @@
 
 
           <!-- Info boxes -->
-         
+
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

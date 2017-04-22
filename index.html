@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Pict Cafe | Log in</title>
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="11971063489-r3cr1mos477et9pm4qo2p1qr8m0dh9pc.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="496523661792-vt9jlmrecptfrbhv6suv274fubse0otm.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
@@ -32,11 +32,11 @@
         <p class="login-box-msg">Sign in to view your memories</p>
         <form action="Scripts/login.php" method="post">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" name="login_email" placeholder="Email"/>
+            <input type="email" class="form-control" name="login_email" placeholder="Email" required/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" name="login_password" placeholder="Password"/>
+            <input type="password" class="form-control" name="login_password" placeholder="Password" required/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -80,7 +80,7 @@
         });
       });
     </script>
-    
+
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -120,7 +120,7 @@
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-       
+
        function checkLoginState() {
         FB.getLoginStatus(function(response) {
           statusChangeCallback(response);
@@ -153,7 +153,7 @@
           console.log('Successful login for: ' + response.name);
           document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-           
+
             url = url + "&name=" + response.name;
            // document.getElementById('status13').innerHTML = url;
             window.location = url;
@@ -168,6 +168,6 @@
     </div>
     <div id="status13">
     </div>
-    
+
   </body>
 </html>

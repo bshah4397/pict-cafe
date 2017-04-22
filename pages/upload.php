@@ -11,8 +11,8 @@
         $count = count($emails);
         $i=0;
        // echo $count;
-     
-            
+
+
     ?>
 <!DOCTYPE html>
 <html>
@@ -50,6 +50,30 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('.search-box input[type="text"]').on("keyup input", function(){
+              /* Get input value on change */
+              var term = $(this).val();
+              var resultDropdown = $(this).siblings(".result");
+              if(term.length){
+                  $.get("../Scripts/backend-search.php", {query: term}).done(function(data){
+                      // Display the returned data in browser
+                      resultDropdown.html(data);
+                  });
+              } else{
+                  resultDropdown.empty();
+              }
+          });
+
+          // Set search input value on click of result item
+          $(document).on("click", ".result p", function(){
+              $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+              $(this).parent(".result").empty();
+          });
+      });
+    </script>
   </head>
   <body class="skin-blue">
     <div class="wrapper">
@@ -110,14 +134,18 @@
               <a href="#"><i class="fa fa-circle text-success"></i> Verified</a>
             </div>
           </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input required="true" type="text" name="q" class="form-control" placeholder="Search..."/>
+          <form action="../Scripts/searchMediatorForEvents.php" method="get" class="sidebar-form">
+
+            <div class="input-group search-box">
+
+              <input type="text" autocomplete="off" name="q" class="form-control" placeholder="Search..."/>
+              <div class="result" style="background-color: white !important;"></div>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
+
             </div>
+            <!-- <div class="result"></div> -->
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->

@@ -1,7 +1,9 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-$link = mysqli_connect("localhost", "root", "root", "pict-cafe");
+@session_start();
+$link = mysqli_connect("localhost", "root", "", "pict-cafe");
+
 
 // Check connection
 if($link === false){
@@ -13,7 +15,7 @@ $query = mysqli_real_escape_string($link, $_REQUEST['query']);
 
 if(isset($query)){
     // Attempt select query execution
-    $sql = "SELECT * FROM event WHERE event_name LIKE '" . $query . "%'";
+    $sql = "SELECT * FROM event WHERE event_name LIKE '" . $query . "%' AND event_creator LIKE '".$_SESSION["email"]."'";
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){
